@@ -1,0 +1,19 @@
+{
+  "name": "obdeeper",
+  "version": "1.0.0",
+  "description": "Object deep setters and getters",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "object",
+    "deep",
+    "properties"
+  ],
+  "author": "Zaal Tonia",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.5.2"
+  }
+}
