@@ -9,7 +9,7 @@ Object.defineProperty(Object.prototype, "deepOb", {
 	enumerable: false,
 	value: function(path, val) {
 		if (arguments.length===1) return deepGet.bind(this)(path)
-		else deepSet.bind(this)(path, val)
+		else return deepSet.bind(this)(path, val)
 	}
 })
 
@@ -24,18 +24,20 @@ function deepSet (path, value) {
 		return Object.prototype.toString.call(ob) == '[object Function]'
 	}
 
-	if (!isObject(this)) throw new Error('Deep Ob is not an available method of Javascript Primitives')
+	var type = (isObject(this)<<2 | isFunction(this)<<1 | isArray(this))
+
+	if (!type) throw new Error('Deep Ob is not an available method of Javascript Primitives')
 
 	if (!isString(path)) { 
 		throw new Error("Invalid path")
 	}
 	var pathArry = path.split('.')
 
-	pathArry.forEach(function(val, key) {
-			if (!val.match(/\w+/)) {
-			throw new Error("Invalid property " + val + " in " + this.toString + " " + pathArry.slice(0,key).join('.'))
-			}
-			});
+	if (pathArry.some((val, key) => !val.match(/\w+/))) {
+		throw new Error("Invalid property path " + path + " in " +
+			this.toString)
+	}
+
 	var valueReceptor = pathArry.pop();
 
 	var i,imax, cursor
@@ -58,7 +60,7 @@ function deepSet (path, value) {
 	}
 	cursor[valueReceptor] = value
 
-	return this
+	return value // this
 }
 
 function deepGet(path) {
