@@ -27,6 +27,7 @@ function deepSet (path, value) {
 	var type = (isObject(this)<<2 | isFunction(this)<<1 | isArray(this))
 
 	if (!type) throw new Error('Deep Ob is not an available method of Javascript Primitives')
+	if (type&1) throw new Error('Deep Ob is not fully supported on bare Array')
 
 	if (!isString(path)) { 
 		throw new Error("Invalid path")

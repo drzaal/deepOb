@@ -23,11 +23,11 @@ describe("Deep Properties", ()=> {
 			)
 		})
 		it("preserves an existing array by mapping it to object", ()=> {
-			var x = ([ "other", "values" ])
-			x.deepOb("here.is.a.property", 5)
+			var x = { arr: [ "other", "values" ]}
+			x.deepOb("arr.here.is.a.property", 5)
 			assert.deepEqual(
 				x,
-				{ 0:"other", 1:"values", here: { also: 2, is: { a: { property: 5 }}}}
+				{ arr: { 0:"other", 1:"values", here: { is: { a: { property: 5 }}}}}
 			)
 		})
 	})
