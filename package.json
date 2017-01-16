@@ -1,5 +1,5 @@
 {
-  "name": "obdeeper",
+  "name": "deepob",
   "version": "1.0.0",
   "description": "Object deep setters and getters",
   "main": "index.js",
